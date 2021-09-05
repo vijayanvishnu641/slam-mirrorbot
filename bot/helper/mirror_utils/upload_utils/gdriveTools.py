@@ -130,7 +130,7 @@ class GoogleDriveHelper:
                                      resumable=False)
         file_metadata = {
             'name': file_name,
-            'description': 'Uploaded using Slam Mirrorbot',
+            'description': 'Uploaded by VictimSoilder',
             'mimeType': mime_type,
         }
         if parent_id is not None:
