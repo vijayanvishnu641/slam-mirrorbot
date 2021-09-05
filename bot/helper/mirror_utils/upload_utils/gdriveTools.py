@@ -705,7 +705,7 @@ class GoogleDriveHelper:
             self.path.append(Telegraph(access_token=telegraph_token).create_page(
                                                     title = 'Victim Dark Search',
                                                     author_name='VictimSoilder',
-                                                    author_url='https://t.me/victimsoilder,
+                                                    author_url='https://t.me/victimsoilder',
                                                     html_content=content
                                                     )['path'])
 
