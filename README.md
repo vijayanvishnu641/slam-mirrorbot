@@ -168,11 +168,12 @@ Fill up rest of the fields. Meaning of each field is discussed below:
 - `IS_VPS`: (Only for VPS) Don't set this to `True` even if you are using VPS, unless facing error with web server. Also go to start.sh and replace `$PORT` by `80` or any port you want to use.
 - `SERVER_PORT`: Only For VPS even if `IS_VPS` is `False` --> Base URL Port
 - `BASE_URL_OF_BOT`: (Required for Heroku to avoid sleep/idling) Valid BASE URL of app where the bot is deployed. IP/Domain of your bot like `http://myip` or if you have chosen other port then `80` then `http://myip:port`, for Heroku fill `https://yourappname.herokuapp.com` (**NOTE**: Do not put slash at the end), still got idling? You can use http://cron-job.org to ping your Heroku app.
+- `RECURSIVE_SEARCH`: Search in Subfolders (**NOTE**: Only for teamdriveid or root, you can't with folderid)
 - `SHORTENER_API`: Fill your Shortener API key if you are using Shortener.
 - `SHORTENER`: if you want to use Shortener in G-Drive and index link, fill Shortener URL here. Examples:
 ```
 exe.io, gplinks.in, shrinkme.io, urlshortx.com, shortzon.com, bit.ly,
-shorte.st, link-to.net, up-to-down.net, direct-link.net, file-link.net
+shorte.st, linkvertise.com , ouo.io
 ```
 
 Above are the supported URL Shorteners. Except these only some URL Shorteners are supported.
@@ -186,6 +187,35 @@ Three buttons are already added including Drive Link, Index Link, and View Link,
 - `BUTTON_SIX_URL`:
 
 </details>
+
+## Bot commands to be set in [@BotFather](https://t.me/BotFather)
+
+```
+help - Get Detailed Help
+mirror - Start Mirroring
+tarmirror - Start mirroring and upload as .tar
+zipmirror - Start mirroring and upload as .zip
+unzipmirror - Extract files
+qbmirror - Start Mirroring using qBittorrent
+qbtarmirror - Start mirroring and upload as .tar using qb
+qbzipmirror - Start mirroring and upload as .zip using qb
+qbunzipmirror - Extract files using qBittorrent
+clone - Copy file/folder to Drive
+count - Count file/folder of Drive link
+watch - Mirror Youtube-dl support link
+tarwatch - Mirror Youtube playlist link as .tar
+zipwatch - Mirror Youtube playlist link as .zip
+status - Get Mirror Status message
+list -  [query] Searches files in Drive
+cancel - Cancel a task
+cancelall - Cancel all tasks
+del - [drive_url] Delete file from Drive
+log - Get the Bot Log [owner/sudo only]
+shell - Run commands in Shell [owner only]
+restart - Restart the bot [owner/sudo only]
+stats - Bot Usage Stats
+ping - Ping the Bot
+```
 
 ## Getting Google OAuth API credential file
 - Visit the [Google Cloud Console](https://console.developers.google.com/apis/credentials)
@@ -265,8 +295,7 @@ sudo docker image prune -a
 <p><a href="https://telegra.ph/How-to-Deploy-a-Mirror-Bot-to-Heroku-with-CLI-05-06"> <img src="https://img.shields.io/badge/Deploy%20Guide-grey?style=for-the-badge&logo=telegraph" width="170""/></a></p>
 
 # Using Service Accounts for uploading to avoid user rate limit
-For Service Account to work, you must set `USE_SERVICE_ACCOUNTS` = "True" in config file or environment variables, 
-Many thanks to [AutoRClone](https://github.com/xyou365/AutoRclone) for the scripts.
+For Service Account to work, you must set `USE_SERVICE_ACCOUNTS` = "True" in config file or environment variables.
 **NOTE**: Using Service Accounts is only recommended while uploading to a Team Drive.
 
 ## Generate Service Accounts. [What is Service Account](https://cloud.google.com/iam/docs/service-accounts)
