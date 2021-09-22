@@ -1,4 +1,4 @@
-[![Slam](https://telegra.ph/file/db03910496f06094f1f7a.jpg)](https://youtu.be/Pk_TthHfLeE)
+[![SlamDevs](https://telegra.ph/file/143032e96542e7534f073.jpg)](https://t.me/SlamDevs)
 
 # Slam Mirror Bot
 ![GitHub Repo stars](https://img.shields.io/github/stars/SlamDevs/slam-mirrorbot?color=blue&style=flat)
@@ -16,6 +16,8 @@
 
 ## By Slam Devs
 - qBittorrent
+- Leach supported
+- Thumbnail supported
 - Size limiting for Torrent/Direct, Tar/Unzip, Mega and clone
 - Stop duplicates for all tasks except for qBittorrent and youtube-dl tasks 
 - Tar/Unzip G-Drive link 
@@ -165,10 +167,12 @@ Fill up rest of the fields. Meaning of each field is discussed below:
 - `UPTOBOX_TOKEN`: Uptobox token to mirror uptobox links. Get it from [Uptobox Premium Account](https://uptobox.com/my_account).
 - `IGNORE_PENDING_REQUESTS`: If you want the bot to ignore pending requests after it restarts, set this to `True`.
 - `STATUS_LIMIT`: Limit the no. of tasks shown in status message with button. (**NOTE**: Recommended limit is `4` tasks at max).
-- `IS_VPS`: (Only for VPS) Don't set this to `True` even if you are using VPS, unless facing error with web server. Also go to start.sh and replace `$PORT` by `80` or any port you want to use.
+- `IS_VPS`: (Only for VPS) Don't set this to `True` even if you are using VPS, unless facing error with web server. Also go to start.sh and replace `$PORT` by `80` or any other port you want to use.
 - `SERVER_PORT`: Only For VPS even if `IS_VPS` is `False` --> Base URL Port
-- `BASE_URL_OF_BOT`: (Required for Heroku to avoid sleep/idling) Valid BASE URL of app where the bot is deployed. IP/Domain of your bot like `http://myip` or if you have chosen other port then `80` then `http://myip:port`, for Heroku fill `https://yourappname.herokuapp.com` (**NOTE**: Do not put slash at the end), still got idling? You can use http://cron-job.org to ping your Heroku app.
-- `RECURSIVE_SEARCH`: Search in Subfolders (**NOTE**: Only for teamdriveid or root, you can't with folderid)
+- `BASE_URL_OF_BOT`: (Required for Heroku to avoid sleep/idling) Valid BASE URL of app where the bot is deployed. Format of URL should be `http://myip` (where `myip` is the IP/Domain of your bot) or if you have chosen other port than `80` then fill in this format `http://myip:port`, for Heroku fill `https://yourappname.herokuapp.com` (**NOTE**: Do not put slash at the end), still got idling? You can use http://cron-job.org to ping your Heroku app.
+- `RECURSIVE_SEARCH`: Set this to `True` to search in sub-folders with `/list` (**NOTE**: This will only work with shared-drive ID or fill `root` for main drive. Folder IDs are not compatible with it.)
+- `TG_SPLIT_SIZE`: Size Telegram split, leave it empty for max size `2GB`
+- `AS_DOCUMENT`: Should all the upload to telegram be forced as documents or not, set it `True` or `False`
 - `SHORTENER_API`: Fill your Shortener API key if you are using Shortener.
 - `SHORTENER`: if you want to use Shortener in G-Drive and index link, fill Shortener URL here. Examples:
 ```
@@ -178,7 +182,7 @@ shorte.st, linkvertise.com , ouo.io
 
 Above are the supported URL Shorteners. Except these only some URL Shorteners are supported.
 ### Add more buttons (Optional Field)
-Three buttons are already added including Drive Link, Index Link, and View Link, you can add extra buttons, if you don't know what are below entries, simply leave them, don't fill anything in them.
+Three buttons are already added including Drive Link, Index Link, and View Link, you can add extra buttons, if you don't know what are the below entries, simply leave them, don't fill anything in them.
 - `BUTTON_FOUR_NAME`:
 - `BUTTON_FOUR_URL`:
 - `BUTTON_FIVE_NAME`:
@@ -200,11 +204,24 @@ qbmirror - Start Mirroring using qBittorrent
 qbtarmirror - Start mirroring and upload as .tar using qb
 qbzipmirror - Start mirroring and upload as .zip using qb
 qbunzipmirror - Extract files using qBittorrent
+leech - Leech Torrent/Direct link
+tarleech - Leech Torrent/Direct link and upload as .tar
+zipleech - Leech Torrent/Direct link and upload as .zip
+unzipleech - Leech Torrent/Direct link and extract
+qbleech - Leech Torrent/Magnet using qBittorrent
+qbtarleech - Leech Torrent/Magnet and upload as .tar using qb
+qbzipleech - Leech Torrent/Magnet and upload as .zip using qb
+qbunzipleech - Leech Torrent and extract using qb
 clone - Copy file/folder to Drive
 count - Count file/folder of Drive link
-watch - Mirror Youtube-dl support link
-tarwatch - Mirror Youtube playlist link as .tar
-zipwatch - Mirror Youtube playlist link as .zip
+watch - Mirror Youtube-dl supported link
+tarwatch - Mirror Youtube playlist link and upload as .tar
+zipwatch - Mirror Youtube playlist link and upload as .zip
+leechwatch - Leech through Youtube-dl supported link
+leechtarwatch - Leech Youtube playlist link and upload as .tar
+leechzipwatch - Leech Youtube playlist link and upload as .zip
+leechset - Leech settings
+setthumb - Set Thumbnail
 status - Get Mirror Status message
 list -  [query] Searches files in Drive
 cancel - Cancel a task
@@ -212,7 +229,7 @@ cancelall - Cancel all tasks
 del - [drive_url] Delete file from Drive
 log - Get the Bot Log [owner/sudo only]
 shell - Run commands in Shell [owner only]
-restart - Restart the bot [owner/sudo only]
+restart - Restart the Bot [owner/sudo only]
 stats - Bot Usage Stats
 ping - Ping the Bot
 ```
@@ -284,7 +301,7 @@ sudo docker container prune
 ```
 sudo docker image prune -a
 ```
-- Video from Tortoolkit repo
+- Tutorial video from Tortoolkit repo
 <p><a href="https://youtu.be/c8_TU1sPK08"> <img src="https://img.shields.io/badge/See%20Video-black?style=for-the-badge&logo=YouTube" width="160""/></a></p>
 
 ## Deploying on Heroku
